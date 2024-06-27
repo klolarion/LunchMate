@@ -5,6 +5,8 @@ import java.util.*;
  * -> 하드코딩된부분, 기타 배열, 리스트크기 등 범용성있게 수정필요
  * -> 3일이상 혹은 3인이상 가능하게 수정필요
  * -> 출력부분 직관적으로 수정필요
+ * 2024.06.27 김재근 : 입력으로 인원설정 가능하게 수정
+ * -> 최대인원제한, 홀수일경우 예외처리 필요
  */
 
 /*
@@ -18,12 +20,29 @@ import java.util.*;
  * */
 
 public class LunchMate {
+    int playerNumber;
     Map<String, String[]> lunchTeam = new HashMap<>();
-    String[] players = {"A", "B", "C", "D", "E", "F"};
+    String[] players;
     List<String> pickedPlayers;
 
+    public LunchMate(){}
+
+    public LunchMate(int playerNumber){
+        this.playerNumber = playerNumber;
+        players = new String[playerNumber];
+        initMember();
+    }
+
+    void initMember(){
+        for(int i = 0; i < players.length; i++){
+            players[i] = String.valueOf((char)('A' + i));
+        }
+    }
+
+
+
     public static void main(String[] args) {
-        LunchMate lunch = new LunchMate();
+        LunchMate lunch = new LunchMate(8);
         lunch.mixLunchTeam(1);
         lunch.mixLunchTeam(2);
     }
